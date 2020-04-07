@@ -1,12 +1,13 @@
-package com.qa.baseclass;
+package com.guru99bank.pages;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -15,15 +16,14 @@ import org.testng.annotations.BeforeClass;
 
 
 
-public class BaseClass{
-public  WebDriver driver = null;
-	
-	public Properties prop;
-	public FileInputStream  ip = null;
-	
-	@BeforeClass
+public class Loginpage {
+	public WebDriver driver = null;
 
-	public void loadProperties() throws IOException {
+	public static Properties prop;
+	public static FileInputStream  ip = null;
+	
+	
+	public static void loadProperties() throws IOException {
 		prop = new Properties();
 		ip = new FileInputStream("C:\\Users\\hp\\git\\ecommerce\\src\\main\\java\\com\\guru99bank\\config\\login_details.properties");
 	  prop.load(ip);
@@ -35,13 +35,7 @@ public  WebDriver driver = null;
         	System.setProperty("webdriver.gecko.driver", "C:\\Users\\hp\\git\\ecommerce\\lib\\geckodriver.exe");
     		driver=new FirefoxDriver();
         }
-        else if (browserName.equalsIgnoreCase("ie")) {
-        	System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\lib\\IEDriverServer.exe");
-        	
-            driver = new InternetExplorerDriver();
-
-        }
-        else if (browserName.equalsIgnoreCase("chrome")) {
+                else if (browserName.equalsIgnoreCase("chrome")) {
         	//System.setProperty("webdriver.chrome.driver", ".\\Lib\\chromedriver.exe");
         	  System.setProperty("webdriver.chrome.driver", ".\\lib\\chromedriver.exe");
             driver = new ChromeDriver();	
@@ -58,6 +52,28 @@ public  WebDriver driver = null;
 			
 		}
 	
-	}
+	
 	}
 
+
+	
+
+	WebElement username = driver.findElement(By.name("uid"));
+
+	WebElement password = driver.findElement(By.name("password"));
+	
+	WebElement loginbtn = driver.findElement(By.name("btnLogin"));
+		
+	public void enterusername(String user) {
+		username.clear();
+		username.sendKeys(user);
+	} 
+	public void enterpassword(String pwd) {
+		password.clear();
+		password.sendKeys(pwd);
+	}
+	public void clickonloginbtn() {
+		loginbtn.click();
+	}
+
+}
