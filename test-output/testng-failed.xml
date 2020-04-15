@@ -3,15 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ecommerce.pages.HomePage">
+      <class name="com.ecommerce.tests.MobilePageTest">
         <methods>
-          <include name="selectMobilesByName"/>
-          <include name="sortedornot"/>
-          <include name="teardown"/>
-          <include name="verify_Title_of_MObile_Page"/>
+          <include name="cannotaddmoreproduct_incart_than_productavailableinstore"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- com.ecommerce.pages.HomePage -->
+      </class> <!-- com.ecommerce.tests.MobilePageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
